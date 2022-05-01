@@ -1,0 +1,36 @@
+@Entity
+@Table(name="CUSTOMER_CUSTOMER")
+@NamedQuery(
+    name="findAllCustomers",
+    query="SELECT c FROM Customer c " +
+          "ORDER BY c.id"
+)
+@XmlRootElement(name="customer")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @XmlAttribute(required=true) 
+    protected int id;
+    
+    @XmlElement(required=true) 
+    protected String firstname;
+    
+    @XmlElement(required=true) 
+    protected String lastname;
+    
+    @XmlElement(required=true)
+    @OneToOne
+    protected Address address;
+    
+    @XmlElement(required=true)
+    protected String email;
+    
+    @XmlElement (required=true)
+    protected String phone;
+    
+    public Customer() {...}
+    
+    // Getter and setter methods
+    // ...
+}
